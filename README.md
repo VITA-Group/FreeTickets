@@ -35,6 +35,11 @@ python3 main_EDST.py --sparse --model wrn-28-10 --data cifar10 --nolrsche \\
 --update-frequency 1000 --batch-size 128 --death-rate 0.5 --large-death-rate 0.8 \\
 --growth gradient --death magnitude --redistribution none --epochs 450 --density 0.2
 ```
+[Training module] The training module is controlled by the following arguments:
+* `--epochs-explo` - An integer that controls the training epochs of the exploration phase.
+* `--model-num` - An integer, the number free tickets to produce.
+* `--large-death-rate` - A float, the ratio of parameters to explore for each refine phase.
+* `--density` - An float, the density (1-sparsity) level for each free ticket.
 
 To train Wide ResNet28-10 on CIFAR10/100 with PF (prung and finetuning) ensemble at sparsity 0.8:
 
