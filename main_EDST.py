@@ -175,8 +175,6 @@ def main():
     parser.add_argument('--log-interval', type=int, default=100, metavar='N',
                         help='how many batches to wait before logging training status')
     parser.add_argument('--optimizer', type=str, default='sgd', help='The optimizer to use. Default: sgd. Options: sgd, adam.')
-    randomhash = ''.join(str(time.time()).split('.'))
-    parser.add_argument('--save', type=str, default=randomhash + '.pt', help='path to save the final model')
     parser.add_argument('--data', type=str, default='mnist')
     parser.add_argument('--l1', type=float, default=0.0)
     parser.add_argument('--fp16', action='store_true', help='Run in fp16 mode.')
