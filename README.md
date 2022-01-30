@@ -70,4 +70,4 @@ python ensemble_freetickets.py --mode predict --resume $resume --dataset cifar10
 --seed 18 --test-batch-size 128
 ```
 * `--resume` - An folder path that contains the all the free tickets obtained during training.
-
+* `--mode` - An str that control the evaluation mode, including: predict, disagreement, calibration, KD, and tsne.
