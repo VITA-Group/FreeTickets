@@ -21,18 +21,18 @@ Python 3.6, PyTorch v1.5.1, and CUDA v10.2.
 To train Wide ResNet28-10 on CIFAR10/100 with DST ensemble at sparsity 0.8:
 
 ```bash
-python main_DST.py --sparse --model wrn-28-10 --data cifar10 --seed 17 \\
---sparse-init ERK --update-frequency 1000 --batch-size 128 --death-rate 0.5 \\
---large-death-rate 0.8 --growth gradient --death magnitude \\
---redistribution none --epochs 250 --density 0.2
+python main_DST.py --sparse --model wrn-28-10 --data cifar10 --seed 17 --sparse-init ERK \
+--update-frequency 1000 --batch-size 128 --death-rate 0.5 --large-death-rate 0.8 \
+--growth gradient --death magnitude --redistribution none --epochs 250 --density 0.2
+
 ```
 
 To train Wide ResNet28-10 on CIFAR10/100 with EDST ensemble at sparsity 0.8:
 
 ```bash
-python3 main_EDST.py --sparse --model wrn-28-10 --data cifar10 --nolrsche \\
---decay-schedule constant --seed 17 --epochs-explo 150 --model-num 3 --sparse-init ERK \\
---update-frequency 1000 --batch-size 128 --death-rate 0.5 --large-death-rate 0.8 \\
+python3 main_EDST.py --sparse --model wrn-28-10 --data cifar10 --nolrsche \
+--decay-schedule constant --seed 17 --epochs-explo 150 --model-num 3 --sparse-init ERK \
+--update-frequency 1000 --batch-size 128 --death-rate 0.5 --large-death-rate 0.8 \
 --growth gradient --death magnitude --redistribution none --epochs 450 --density 0.2
 ```
 [Training module] The training module is controlled by the following arguments:
@@ -46,29 +46,28 @@ To train Wide ResNet28-10 on CIFAR10/100 with PF (prung and finetuning) ensemble
 First, we need train a dense model with:
 
 ```bash
-python3 main_individual.py  --model wrn-28-10 --data cifar10 \\
---decay-schedule cosine --seed 18  --sparse_init ERK --update_frequency 1000 \\
---batch-size 128 --death-rate 0.5 --large-death-rate 0.5 --growth gradient \\
---death magnitude --redistribution none --epochs 250 --density 0.2
+python3 main_individual.py  --model wrn-28-10 --data cifar10 --decay-schedule cosine --seed 18 \
+--sparse_init ERK --update_frequency 1000 --batch-size 128 --death-rate 0.5 --large-death-rate 0.5 \
+--growth gradient --death magnitude --redistribution none --epochs 250 --density 0.2
 ```
 
 Then, perform pruning and finetuning with:
 
 ```bash
 pretrain='results/wrn-28-10/cifar10/individual/dense/18.pt'
-python3 main_PF.py --sparse --model wrn-28-10 --resume --pretrain $pretrain \\
---lr 0.001 --fix --data cifar10 --nolrsche --decay-schedule constant --seed 18 \\
---epochs-fs 150 --model-num 3 --sparse_init pruning --update_frequency 1000 \\
---batch-size 128 --death-rate 0.5 --large-death-rate 0.8 --growth gradient \\
---death magnitude --redistribution none --epochs $epoch --density 0.2
+python3 main_PF.py --sparse --model wrn-28-10 --resume --pretrain $pretrain --lr 0.001 \
+--fix --data cifar10 --nolrsche --decay-schedule constant --seed 18 
+--epochs-fs 150 --model-num 3 --sparse_init pruning --update_frequency 1000 --batch-size 128 \
+--death-rate 0.5 --large-death-rate 0.8 --growth gradient --death magnitude \
+--redistribution none --epochs $epoch --density 0.2
 ```
 
 After finish the training of various ensemble methods, run the following commands for test ensemble:
 
 ```bash
 resume=results/wrn-28-10/cifar10/density_0.2/EDST/M=3/
-python ensemble_freetickets.py --mode predict --resume $resume --dataset cifar10 --model wrn-28-10 --seed 18 \
---test-batch-size 128
+python ensemble_freetickets.py --mode predict --resume $resume --dataset cifar10 --model wrn-28-10 \
+--seed 18 --test-batch-size 128
 ```
 * `--resume` - An folder str that contains the all the free tickets obtained during training.
 
