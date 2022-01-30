@@ -33,5 +33,6 @@ To train Wide ResNet28-10 on CIFAR10/100 with EDST ensemble at sparsity 0.8:
 python3 main_EDST.py --sparse --model wrn-28-10 --data cifar10 --nolrsche \\
 --decay-schedule constant --seed 17 --epochs-explo 150 --model-num 3 --sparse-init ERK \\
 --update-frequency 1000 --batch-size 128 --death-rate 0.5 --large-death-rate 0.8 \\
---growth random --death magnitude --redistribution none --epochs 450 --density 0.2
+--growth gradient --death magnitude --redistribution none --epochs 450 --density 0.2
 ```
+
