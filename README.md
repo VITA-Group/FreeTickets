@@ -52,7 +52,7 @@ python3 main_individual.py  --model wrn-28-10 --data cifar10 \\
 --death magnitude --redistribution none --epochs 250 --density 0.2
 ```
 
-Then, run:
+Then, perform pruning and finetuning with:
 
 ```bash
 pretrain='results/wrn-28-10/cifar10/individual/dense/18.pt'
