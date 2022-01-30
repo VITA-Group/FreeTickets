@@ -582,21 +582,17 @@ def main():
                 print('\t{0}'.format(key))
             raise Exception('You need to select a model')
         else:
-            if args.model == 'ResNet18':
-                model = ResNet18(c=10).to(device)
-            else:
-                cls, cls_args = models[args.model]
-                if args.dataset == 'cifar100':
-                    cls_args[2] = 100
-                model = cls(*(cls_args + [args.save_features, args.bench])).to(device)
-                print_and_log(model)
-                print_and_log('=' * 60)
-                print_and_log(args.model)
-                print_and_log('=' * 60)
+            cls, cls_args = models[args.model]
+            if args.dataset == 'cifar100':
+                cls_args[2] = 100
+            model = cls(*(cls_args + [args.save_features, args.bench])).to(device)
+            print_and_log(model)
+            print_and_log('=' * 60)
+            print_and_log(args.model)
+            print_and_log('=' * 60)
 
 
         if args.resume:
-
                 ###############################################################################
                 #                          disagreement                                      #
                 ##############################################################################
@@ -620,7 +616,6 @@ def main():
                             model.load_state_dict(checkpoint['state_dict'])
                         else:
                             model.load_state_dict(checkpoint)
-
 
                         current_fold_preds, target = evaluate_ensemble(args, model, device, test_loader)
                         all_folds_preds.append(current_fold_preds)
@@ -695,8 +690,8 @@ def main():
                     individual_acc_std = np.array(val_acc).std(axis=0)
                     individual_nll_mean = np.array(nll_loss).mean(axis=0)
                     individual_nll_std = np.array(nll_loss).std(axis=0)
-                    print(f"Averaged individual acc is {individual_acc_mean} and std is {individual_acc_std}")
-                    print(f"Averaged individual NLL is {individual_nll_mean} and std is {individual_nll_std}")
+                    print(f"Averaged individual model: acc is {individual_acc_mean} and std is {individual_acc_std}")
+                    print(f"Averaged individual model: NLL is {individual_nll_mean} and std is {individual_nll_std}")
 
                     output_mean = torch.mean(torch.stack(all_folds_preds, dim=0), dim=0)
                     test_loss = F.nll_loss(torch.log(output_mean), target, reduction='mean').item()  # sum up batch loss
@@ -704,7 +699,7 @@ def main():
                     pred = output_mean.argmax(dim=1, keepdim=True)  # get the index of the max log-probability
                     correct = pred.eq(target.view_as(pred)).sum().item()
                     n = target.shape[0]
-                    print_and_log('\n{}: Accuracy: {}/{} ({:.3f}%)\n'.format(
+                    print_and_log('\n{}: Ensemble Accuracy is: {}/{} ({:.3f}%)\n'.format(
                         'Test evaluation',
                          correct, n, 100. * correct / float(n)))
                 ###############################################################################
