@@ -63,3 +63,9 @@ python3 main_PF.py --sparse --model wrn-28-10 --resume --pretrain $pretrain \\
 --death magnitude --redistribution none --epochs $epoch --density 0.2
 ```
 
+After finish the training of various ensemble methods, run the following commands for test ensemble:
+
+```bash
+resume=''results/wrn-28-10/cifar10/density_0.2/EDST/M=3/
+python ensemble_voting.py --mode predict --resume $resume --dataset cifar10 --model wrn-28-10 --seed 18 \
+--test-batch-size 128
