@@ -1,6 +1,6 @@
 # [ICLR 2022] Deep Ensembling with No Overhead for either Training or Testing: The All-Round Blessings of Dynamic Sparsity
 
-<img src="https://github.com/Shiweiliuiiiiiii/FreeTickets/blob/main/FreeTickets.png" width="500" height="300">
+<img src="https://github.com/Shiweiliuiiiiiii/FreeTickets/blob/main/FreeTickets.png" width="300" height="300">
 
 **Deep Ensembling with No Overhead for either Training or Testing: The All-Round Blessings of Dynamic Sparsity**<br>
 Shiwei Liu, Tianlong Chen, Zahra Atashgahi, Xiaohan Chen, Ghada Sokar, Elena Mocanu, Mykola Pechenizkiy, Zhangyang Wang, Decebal Constantin Mocanu<br>
