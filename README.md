@@ -17,7 +17,7 @@ Python 3.6, PyTorch v1.5.1, and CUDA v10.2.
 
 ## How to Run Experiments
 
-# CIFAR-10/100 Experiments
+### CIFAR-10/100 Experiments
 To train Wide ResNet28-10 on CIFAR10/100 with DST ensemble at sparsity 0.8:
 
 ```bash
@@ -25,7 +25,7 @@ python main_DST.py --sparse --model wrn-28-10 --data cifar10 --seed 17 \\
 --sparse-init ERK --update-frequency 1000 --batch-size 128 --death-rate 0.5 \\
 --large-death-rate 0.8 --growth gradient --death magnitude \\
 --redistribution none --epochs 250 --density 0.2
-
+```
 
 To train Wide ResNet28-10 on CIFAR10/100 with EDST ensemble at sparsity 0.8:
 
@@ -34,3 +34,4 @@ python3 main_EDST.py --sparse --model wrn-28-10 --data cifar10 --nolrsche \\
 --decay-schedule constant --seed 17 --epochs-explo 150 --model-num 3 --sparse-init ERK \\
 --update-frequency 1000 --batch-size 128 --death-rate 0.5 --large-death-rate 0.8 \\
 --growth random --death magnitude --redistribution none --epochs 450 --density 0.2
+```
