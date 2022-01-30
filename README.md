@@ -69,5 +69,5 @@ resume=results/wrn-28-10/cifar10/density_0.2/EDST/M=3/
 python ensemble_freetickets.py --mode predict --resume $resume --dataset cifar10 --model wrn-28-10 \
 --seed 18 --test-batch-size 128
 ```
-* `--resume` - An folder str that contains the all the free tickets obtained during training.
+* `--resume` - An folder path that contains the all the free tickets obtained during training.
 
