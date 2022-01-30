@@ -47,7 +47,7 @@ First, we need train a dense model with:
 
 ```bash
 python3 main_individual.py  --model wrn-28-10 --data cifar10 --decay-schedule cosine --seed 18 \
---sparse_init ERK --update_frequency 1000 --batch-size 128 --death-rate 0.5 --large-death-rate 0.5 \
+--sparse-init ERK --update-frequency 1000 --batch-size 128 --death-rate 0.5 --large-death-rate 0.5 \
 --growth gradient --death magnitude --redistribution none --epochs 250 --density 0.2
 ```
 
@@ -57,7 +57,7 @@ Then, perform pruning and finetuning with:
 pretrain='results/wrn-28-10/cifar10/individual/dense/18.pt'
 python3 main_PF.py --sparse --model wrn-28-10 --resume --pretrain $pretrain --lr 0.001 \
 --fix --data cifar10 --nolrsche --decay-schedule constant --seed 18 
---epochs-fs 150 --model-num 3 --sparse_init pruning --update_frequency 1000 --batch-size 128 \
+--epochs-fs 150 --model-num 3 --sparse-init pruning --update-frequency 1000 --batch-size 128 \
 --death-rate 0.5 --large-death-rate 0.8 --growth gradient --death magnitude \
 --redistribution none --epochs $epoch --density 0.2
 ```
