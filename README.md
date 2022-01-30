@@ -71,3 +71,18 @@ python ensemble_freetickets.py --mode predict --resume $resume --dataset cifar10
 ```
 * `--resume` - An folder path that contains the all the free tickets obtained during training.
 * `--mode` - An str that control the evaluation mode, including: predict, disagreement, calibration, KD, and tsne.
+
+
+# Citation
+if you find this repo is helpful, please cite
+
+```bash
+@inproceedings{
+liu2022deep,
+title={Deep Ensembling with No Overhead for either Training or Testing: The All-Round Blessings of Dynamic Sparsity},
+author={Shiwei Liu and Tianlong Chen and Zahra Atashgahi and Xiaohan Chen and Ghada Sokar and Elena Mocanu and Mykola Pechenizkiy and Zhangyang Wang and Decebal Constantin Mocanu},
+booktitle={International Conference on Learning Representations},
+year={2022},
+url={https://openreview.net/forum?id=RLtqs6pzj1-}
+}
+```
