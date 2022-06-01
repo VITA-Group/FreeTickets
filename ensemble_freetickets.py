@@ -22,6 +22,8 @@ import torchvision.transforms as transforms
 import seaborn as sns
 sns.set()
 
+from datasets import cifar_c_dataloaders
+
 import warnings
 warnings.filterwarnings("ignore", category=UserWarning)
 cudnn.benchmark = True
