@@ -18,7 +18,7 @@ Python 3.6, PyTorch v1.5.1, and CUDA v10.2.
 ## How to Run Experiments
 
 ### CIFAR-10/100 Experiments
-To train Wide ResNet28-10 on CIFAR10/100 with DST ensemble at sparsity 0.8:
+### To train Wide ResNet28-10 on CIFAR10/100 with DST ensemble at sparsity 0.8:
 
 ```bash
 python main_DST.py --sparse --model wrn-28-10 --data cifar10 --seed 17 --sparse-init ERK \
@@ -27,7 +27,7 @@ python main_DST.py --sparse --model wrn-28-10 --data cifar10 --seed 17 --sparse-
 
 ```
 
-To train Wide ResNet28-10 on CIFAR10/100 with EDST ensemble at sparsity 0.8:
+### To train Wide ResNet28-10 on CIFAR10/100 with EDST ensemble at sparsity 0.8:
 
 ```bash
 python3 main_EDST.py --sparse --model wrn-28-10 --data cifar10 --nolrsche \
@@ -41,7 +41,7 @@ python3 main_EDST.py --sparse --model wrn-28-10 --data cifar10 --nolrsche \
 * `--large-death-rate` - A float, the ratio of parameters to explore for each refine phase.
 * `--density` - An float, the density (1-sparsity) level for each free ticket.
 
-To train Wide ResNet28-10 on CIFAR10/100 with PF (prung and finetuning) ensemble at sparsity 0.8:
+### To train Wide ResNet28-10 on CIFAR10/100 with PF (prung and finetuning) ensemble at sparsity 0.8:
 
 First, we need train a dense model with:
 
@@ -59,7 +59,7 @@ python3 main_PF.py --sparse --model wrn-28-10 --resume --pretrain $pretrain --lr
 --fix --data cifar10 --nolrsche --decay-schedule constant --seed 18 
 --epochs-fs 150 --model-num 3 --sparse-init pruning --update-frequency 1000 --batch-size 128 \
 --death-rate 0.5 --large-death-rate 0.8 --growth gradient --death magnitude \
---redistribution none --epochs $epoch --density 0.2
+--redistribution none --epochs 250 --density 0.2
 ```
 
 After finish the training of various ensemble methods, run the following commands for test ensemble:
