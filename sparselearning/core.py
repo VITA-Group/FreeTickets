@@ -317,7 +317,7 @@ class Masking(object):
         for name, weight in self.masks.items():
             sparse_size += (weight != 0).sum().int().item()
 
-        print('Total parameters under sparsity level of {0}: {1}'.format(density, sparse_size / total_size))
+        print('Sparsity under pruning rate of {0}: {1}'.format(self.PF_rate, 1 - (sparse_size / total_size)))
 
     def add_module(self, module, density, sparse_init='ER'):
         self.sparse_init = sparse_init
