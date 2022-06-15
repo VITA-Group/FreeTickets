@@ -54,13 +54,16 @@ python3 main_individual.py  --model wrn-28-10 --data cifar10 --decay-schedule co
 Then, perform pruning and finetuning with:
 
 ```bash
-pretrain='results/wrn-28-10/cifar10/individual/dense/18.pt'
-python3 main_PF.py --sparse --model wrn-28-10 --resume --pretrain $pretrain --lr 0.001 \
+pretrain='results/wrn-28-10/cifar10/individual/dense/18.pt' 
+python3 main_PF.py --sparse --sparse-init pruning --model wrn-28-10 --resume --pretrain $pretrain --lr 0.001 \
 --fix --data cifar10 --nolrsche --decay-schedule constant --seed 18 
 --epochs-fs 150 --model-num 3 --sparse-init pruning --update-frequency 1000 --batch-size 128 \
---death-rate 0.5 --large-death-rate 0.8 --growth gradient --death magnitude \
---redistribution none --epochs 250 --density 0.2
+--death-rate 0.5 --large-death-rate 0.8 --growth gradient--death magnitude \
+--redistribution none --epochs 250 --PF-rate 0.8
 ```
+
+--PF-rate controls the pruning rate of the finetuned model.
+If have errors, please check and make usre the path of --pretrain is the path of your saved dense model.
 
 After finish the training of various ensemble methods, run the following commands for test ensemble:
 
